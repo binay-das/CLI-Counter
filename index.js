@@ -22,5 +22,23 @@ program.command('countLines')
             }
         })
     })
- 
+    
+    program.command('countWords')
+    .description('Count the number of words in a file')
+    .argument('<file>', 'file to count words in')
+    .action((file) => {
+        const fs = require('fs');
+
+        fs.readFile(file, 'utf8', (err, data) => {
+            if (err) {
+                console.error(`Error reading file: ${err.message}`);
+                return;
+            } else {
+                const words = data.split(/\s+/).filter(Boolean);
+                console.log(`There are ${words.length} words in ${file}`);
+            }
+        });
+    })
+
+
 program.parse();
