@@ -40,5 +40,26 @@ program.command('countLines')
         });
     })
 
+program.command('countLetters')
+    .description('Count the number of letters in a file')
+    .argument('<file>', 'file to count letters in')
+    .action((file) => {
+        const fs = require('fs');
+
+        fs.readFile(file, 'utf8', (err, data) => {
+            if (err) {
+                console.error(`Error reading file: ${err.message}`);
+                return;
+            }
+
+            // Use regex to match only alphabetic letters
+            const letters = data.match(/[a-zA-Z]/g);
+
+            const letterCount = letters ? letters.length : 0; // Handle case where there are no letters
+            console.log(`There are ${letterCount} letters in ${file}`);
+        });
+    });
+
+   
 
 program.parse();
