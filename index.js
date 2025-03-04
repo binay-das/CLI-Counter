@@ -23,7 +23,7 @@ program.command('countLines')
         })
     })
     
-    program.command('countWords')
+program.command('countWords')
     .description('Count the number of words in a file')
     .argument('<file>', 'file to count words in')
     .action((file) => {
@@ -60,6 +60,6 @@ program.command('countLetters')
         });
     });
 
-   
+
 
 program.parse();
